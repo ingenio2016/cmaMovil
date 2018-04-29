@@ -1,0 +1,30 @@
+﻿.panelWest {
+    border-bottom: none;
+    border-left: none;
+    border-top: none;
+}
+
+.logo {
+    background-color: #ffffff !important;
+}
+
+.x-treelist-nav .x-treelist-item-expander {
+    position: absolute;
+    text-align: right;
+    width: 100%;
+}
+
+#Grid-ListaAfiliados .x-container .x-dock .x-dock-body .x-body .x-grid-row {
+    width: 125%;
+}
+
+#Grid-Pregunta14 .x-container .x-dock .x-dock-body .x-body .x-grid-row {
+    width: 37%;
+}
+
+.tituloSistema {
+    font-size: 24px;
+    font-weight: bold;
+    padding-left: 20px;
+    text-align: center;
+}
