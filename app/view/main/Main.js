@@ -48,6 +48,7 @@
                                     var encuestaIPS = Ext.getCmp("Form-EncuestaIps");
                                     var encuestaEPS = Ext.getCmp("Form-EncuestaEps");
                                     var purisu = Ext.getCmp("Form-Purisu-Principal");
+                                    var afiliacion = Ext.getCmp("Form-Afiliacion");
                                     if(ifpr != undefined) {
                                         ifpr.destroy();
                                     }
@@ -65,6 +66,9 @@
                                     }
                                     if(purisu != undefined) {
                                         purisu.destroy();
+                                    }
+                                    if(afiliacion != undefined) {
+                                      afiliacion.destroy();
                                     }
                                     var mod = Ext.create({ xtype: item._node.data.vista });
 

@@ -1375,9 +1375,9 @@ buscarNuevaIps: function(btn) {
         {
             xtype: "grid",
             columns: [
-            { dataIndex: "idIps", text: "Identificación", flex: 1 },
-            { dataIndex: "codigoIps", text: "Primer Apellido", flex: 1 },
-            { dataIndex: "razonIps", text: "Segundo Apellido", flex: 3 }
+            { dataIndex: "idIps", text: "Id Ips", flex: 1 },
+            { dataIndex: "codigoIps", text: "Código", flex: 1 },
+            { dataIndex: "razonIps", text: "Razón Social", flex: 3 }
             ],
             id: "Grid-ListaIPS",
             itemHeight: 34,
@@ -1388,6 +1388,156 @@ buscarNuevaIps: function(btn) {
                     }
                     else {
                         Ext.getCmp("idIps").setValue(record.get('idIps'));
+                        Ext.getCmp("nombreCompletoIps").setValue(record.get('nombreCompletoIps'));
+                    }
+                    me.overlay.destroy();
+                }
+            },
+            store: {
+                storeId: "ListadoIpsStore",
+                autoLoad: false,
+                fields: [
+                "idIps", "codigoIps", "identificacionIps", "razonIps", "nombreCompletoIps"
+                ],
+                pageSize: 5,
+                data: []
+            },
+            flex: 5
+        }
+        ],
+        scrollable: true,
+    });
+},
+
+buscarAfiliacionIps: function(btn) {
+    var me = this;
+    me.overlay = Ext.Viewport.add({
+        xtype: 'panel',
+        modal: true,
+        hideOnMaskTap: false,
+        showAnimation: {
+            type: 'popIn',
+            duration: 250,
+            easing: 'ease-out'
+        },
+        hideAnimation: {
+            type: 'popOut',
+            duration: 250,
+            easing: 'ease-out'
+        },
+        centered: true,
+        style: "width: 60%",
+        styleHtmlContent: true,
+        items: [
+        {
+            xtype: "button",
+            text: "Cerrar",
+            ui: "action",
+            width: 70,
+            style: "position: relative; top: 0; left: 91%",
+            handler: function () {
+                me.overlay.destroy();
+            }
+        },
+        { html: '<p style="text-align: center">Seleccione los criterios de búsqueda para filtrar las IPS.</p><br />' },
+        {
+            docked: 'top',
+            xtype: 'toolbar',
+            title: '<p style="text-align: center"><b>Listado de IPS</b></p>'
+        },
+        {
+            layout: {
+                type: "hbox"
+            },
+            items: [
+            {
+                items: [
+                {
+                    xtype: "selectfield",
+                    displayField: "nombre",
+                    label: "Campo",
+                    queryMode: "local",
+                    id: "campoBusqueda",
+                    store: Ext.create("Ext.data.ArrayStore", {
+                        fields: ["id", "nombre"],
+                        data: [
+                        ["codigoIps", "Código IPS"]
+                        ]
+                    }),
+                    valueField: "id"
+                },
+                {
+                    xtype: "textfield",
+                    label: "Criterio",
+                    id: "criterioBusqueda",
+                    flex: 1
+                }
+                ],
+                flex: 1
+            },
+            {
+                items: [
+                {
+                    xtype: "button",
+                    text: "Buscar",
+                    ui: "action",
+                    flex: 1,
+                    handler: function () {
+                        var campo = Ext.getCmp("campoBusqueda").getValue();
+                        var criterio = Ext.getCmp("criterioBusqueda").getValue();
+                        var myStore = Ext.getStore('ListadoIpsStore');
+                        var ipsStore = Ext.getStore('ipsAfiliacionStore');
+                        $('body').loading({
+                            theme: 'dark',
+                            message: 'Consultando...'
+                        });
+                        var cont = 0;
+                        async.each(ipsStore.data.items, function(item, callback) {
+                            setTimeout(function() {
+                                if(campo == "codigoIps"){
+                                    if(item.data.codigoIps != criterio){
+                                        callback()
+                                    }else{
+                                        myStore.add(item.data);
+                                        cont++;
+                                        callback("Se encontro");
+                                    }
+                                }
+                            },0);                            
+                        }, function(err) {
+                            if(err){
+                                console.log(err);                                   
+                            }else{
+                                if(cont == 0) {
+                                    Ext.Msg.alert('ATENCION', "No existe ninguna IPS con ese Código", Ext.emptyFn);
+                                }else{
+                                    Ext.Msg.alert('ATENCION', "La IPS se consulto correctamente", Ext.emptyFn);
+                                }
+                            }
+                        });
+                        $('body').loading('stop');
+
+                    }
+                }
+                ]
+            }
+            ]
+        },
+        {
+            xtype: "grid",
+            columns: [
+            { dataIndex: "idIps", text: "Id Ips", flex: 1 },
+            { dataIndex: "codigoIps", text: "Código", flex: 1 },
+            { dataIndex: "razonIps", text: "Razón Social", flex: 3 }
+            ],
+            id: "Grid-ListaIPS",
+            itemHeight: 34,
+            height: 200,
+            listeners: {
+                itemtap: function (grd, index, target, record, e, eOpts) {
+                    if (btn.inGrid === true) {
+                    }
+                    else {
                         Ext.getCmp("nombreCompletoIps").setValue(record.get('nombreCompletoIps'));
                     }
                     me.overlay.destroy();

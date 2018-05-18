@@ -219,6 +219,15 @@ Ext.define('Ext.util.Format', function () {
         },
 
         /**
+         * Format a number as US currency.
+         * @param {Number/String} value The numeric value to format
+         * @return {String} The formatted currency string
+         */
+        decimals : function(v) {
+            return me.getDecimal(v, '', 2);
+        },
+
+        /**
          * Format a number as a currency.
          * @param {Number/String} value The numeric value to format
          * @param {String} [sign] The currency sign to use (defaults to {@link #currencySign})

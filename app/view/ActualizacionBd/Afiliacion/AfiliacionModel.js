@@ -253,6 +253,119 @@
             }
         },
 
+        getListadoAfp: {
+            autoLoad: true,
+            fields: [
+                { name: "Id", type: "int" },
+                { name: 'codigo', type: 'string' },
+                { name: 'nit', type: 'string' },
+                { name: 'nombre', type: 'string' },
+                {
+                    name: "compNombreAfp", convert: function (v, record) {
+                        return "(" + record.get("codigo") + ") " + record.get("nombre");
+                    }
+                }
+            ],
+            proxy: {
+                timeout: 600000,
+                useDefaultXhrHeader: false,
+                type: 'ajax',
+                url: "resources/data/ListadoAfp.json", // Coomuce.Url.Parametros + "GetCondicionDiscapacidadAll",
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data',
+                    totalProperty: "total"
+                }
+            }
+        },
+
+        getListadoArl: {
+            autoLoad: true,
+            fields: [
+                { name: "Id", type: "int" },
+                { name: 'codigo', type: 'string' },
+                { name: 'nit', type: 'string' },
+                { name: 'nombre', type: 'string' },
+                {
+                    name: "compNombreArl", convert: function (v, record) {
+                        return "(" + record.get("codigo") + ") " + record.get("nombre");
+                    }
+                }
+            ],
+            proxy: {
+                timeout: 600000,
+                useDefaultXhrHeader: false,
+                type: 'ajax',
+                url: "resources/data/ListadoArl.json", // Coomuce.Url.Parametros + "GetCondicionDiscapacidadAll",
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data',
+                    totalProperty: "total"
+                }
+            }
+        },
+
+        getCiudad: {
+            storeId: 'getCiudadStore',
+            autoLoad: true,
+            fields: [
+            { name: "idDepartamento", type: "int" },
+            { name: "idCiudad", type: "int" },
+            { name: 'codigoCiudad', type: 'string' },
+            { name: 'nombreCiudad', type: 'string' },
+            {
+                name: "compCiudad", convert: function (v, record) {
+                    return "(" + record.get("codigoCiudad") + ") " + record.get("nombreCiudad");
+                }
+            }
+            ],
+            data: []
+        },
+
+        getCiudadBeneficiario: {
+            storeId: 'getCiudadStoreBeneficiarioStore',
+            autoLoad: true,
+            fields: [
+            { name: "idDepartamento", type: "int" },
+            { name: "idCiudad", type: "int" },
+            { name: 'codigoCiudad', type: 'string' },
+            { name: 'nombreCiudad', type: 'string' },
+            {
+                name: "compCiudad", convert: function (v, record) {
+                    return "(" + record.get("codigoCiudad") + ") " + record.get("nombreCiudad");
+                }
+            }
+            ],
+            data: []
+        },
+
+        getCity: {
+            storeId: 'getCityStore',
+            autoLoad: true,
+            fields: [
+            { name: "idDepartamento", type: "int" },
+            { name: "idCiudad", type: "int" },
+            { name: 'codigoCiudad', type: 'string' },
+            { name: 'nombreCiudad', type: 'string' },
+            {
+                name: "compCiudad", convert: function (v, record) {
+                    return "(" + record.get("codigoCiudad") + ") " + record.get("nombreCiudad");
+                }
+            }
+            ],
+            proxy: {
+                timeout: 600000,
+                useDefaultXhrHeader: false,
+                type: 'ajax',
+                url: "resources/data/Ciudad.json", // Coomuce.Url.Administracion + "GetCiudadAll",
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data',
+                    totalProperty: "total"
+                }
+            }
+        },
+
         getGrupoPoblacional: {
             autoLoad: true,
             fields: [
@@ -278,7 +391,7 @@
             }
         },
 
-        getCiudad: {
+        /*getCiudad: {
             autoLoad: false,
             fields: [
                 { name: "idDepartamento", type: "int" },
@@ -302,7 +415,7 @@
                     totalProperty: "total"
                 }
             }
-        },
+        },*/
 
         getDepartamento: {
             autoLoad: true,
@@ -443,21 +556,127 @@
         },
 
         setFuanBeneficiario: {
+            storeId: 'fuanBeneficiarioStore',
             fields: [
-                "primerApellidoFuanBeneficiariosAfiliado", "segundoApellidoFuanBeneficiariosAfiliado", "primerNombreFuanBeneficiariosAfiliado",
-                "segundoNombreFuanBeneficiariosAfiliado", "idTipoIdentificacion", "compTipoIdentificacion", "identificacionFuanBeneficiariosAfiliado",
-                "idTipoSexo", "compTipoSexo", "fechaNacimientoFuanBeneficiariosAfiliado", "idTipoParentesco", "compTipoParentesco",
-                "idTipoEtnia", "compTipoEtnia", "idTipoDiscapacidad", "compTipoDiscapacidad", "idCondicionDiscapacidad", "compCondicionDiscapacidad",
-                "idDepartamento", "compDepartamento", "idCiudad", "compCiudad", "idTipoZona", "compTipoZona", "telefonoFuanBeneficiariosAfiliado",
-                "upcFuanBeneficiariosAfiliado"
+            { name: 'primerApellidoFuanAfiliado', type: 'string' },
+            { name: 'segundoApellidoFuanAfiliado', type: 'string' },
+            { name: 'primerNombreFuanAfiliado', type: 'string' },
+            { name: 'segundoNombreFuanAfiliado', type: 'string' },
+            { name: 'idTipoIdentificacion', type: 'int' },
+            { name: 'compTipoIdentificacion', type: 'string' },
+            { name: 'identificacionFuanAfiliado', type: 'string' },
+            { name: 'idTipoSexo', type: 'int' },
+            { name: 'compTipoSexo', type: 'string' },
+            { name: 'fechaNacimientoFuanAfiliado', type: 'string' },
+            { name: 'numCarnetFuanAfiliado', type: 'string' },
+            { name: 'idTipoParentesco', type: 'int' },
+            { name: 'compTipoParentesco', type: 'string' },
+            { name: 'idTipoEtnia', type: 'int' },
+            { name: 'compTipoEtnia', type: 'string' },
+            { name: 'idTipoDiscapacidad', type: 'int' },
+            { name: 'compTipoDiscapacidad', type: 'string' },
+            { name: 'idCondicionDiscapacidad', type: 'int' },
+            { name: 'compCondicionDiscapacidad', type: 'string' },     
+            { name: 'idDepartamento', type: 'int' },
+            { name: 'compDepartamento', type: 'string' },
+            { name: 'idCiudad', type: 'int' },
+            { name: 'compCiudad', type: 'string' },
+            { name: 'idTipoZona', type: 'int' },
+            { name: 'compTipoZona', type: 'string' },
+            { name: 'telefonoFuanAfiliado', type: 'string' },
+            { name: 'upcFuanAfiliado', type: 'string' },
+            { name: 'firmaFuanAfiliado', type: 'string' }
+            ],
+            data: [
+                {
+                    "primerApellidoFuanAfiliado": "",
+                    "segundoApellidoFuanAfiliado": "",
+                    "primerNombreFuanAfiliado": "",
+                    "segundoNombreFuanAfiliado": "",
+                    "idTipoIdentificacion": 0,
+                    "compTipoIdentificacion": "",
+                    "identificacionFuanAfiliado": "0",
+                    "idTipoSexo": 0,
+                    "compTipoSexo": "",
+                    "fechaNacimientoFuanAfiliado": null,
+                    "numCarnetFuanAfiliado": "",
+                    "idTipoParentesco": 0,
+                    "compTipoParentesco": "",
+                    "idTipoEtnia": 0,
+                    "compTipoEtnia": "",
+                    "idTipoDiscapacidad": 0,
+                    "compTipoDiscapacidad": "",
+                    "idCondicionDiscapacidad": 0,
+                    "compCondicionDiscapacidad": "",
+                    "idDepartamento": 0,
+                    "compDepartamento": "",
+                    "idCiudad": 0,
+                    "compCiudad": "",
+                    "idTipoZona": 0,
+                    "compTipoZona": "",
+                    "telefonoFuanAfiliado": "",
+                    "upcFuanAfiliado": "0",
+                    "firmaFuanAfiliado": ""
+                }
             ]
         },
 
         setFuanIpsPrimaria: {
+            storeId: "fuanIpsPrimariaStore",
             fields: [
-                "tipoFuanIpsPrimariaAfiliado", "nombreFuanIpsPrimariaAfiliado", "codigoFuanIpsPrimariaAfiliado"
+                { name: 'tipoFuanIpsPrimariaAfiliado', type: 'string' },
+                { name: 'nombreFuanIpsPrimariaAfiliado', type: 'string' },
+                { name: 'codigoFuanIpsPrimariaAfiliado', type: 'string' }                
+            ],
+            data: [
+                {
+                    "tipoFuanIpsPrimariaAfiliado": "C",
+                    "nombreFuanIpsPrimariaAfiliado": "",
+                    "codigoFuanIpsPrimariaAfiliado": ""
+                }
             ]
-        }
+        },
+
+         getTipoIps: {
+            storeId: "getTipoIpsStore",
+            fields: [
+                { name: 'nombre', type: 'string' }               
+            ],
+            data: [
+                {
+                    "nombre": "Seleccione"
+                },
+                {
+                    "nombre": "C"
+                },
+                {
+                    "nombre": "B"
+                }
+            ]
+        },
+
+        getIpsAfiliacionStore : {
+            storeId: 'ipsAfiliacionStore',
+            autoLoad: true,
+            fields: [
+                { name: "idIps", type: "int" },
+                { name: 'codigoIps', type: 'string' },
+                { name: 'identificacionIps', type: 'string' },
+                { name: 'razonIps', type: 'string' },
+                { name: 'nombreCompletoIps', type: 'string' }
+            ],
+            proxy: {
+                timeout: 600000,
+                useDefaultXhrHeader: false,
+                type: 'ajax',
+                url: "resources/data/Ips.json", //Coomuce.Url.Funciones + "GetIpsAll",
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data',
+                    totalProperty: "total"
+                }
+            }
+        },
 
     }
 

@@ -718,8 +718,8 @@
                             infoIfppir: infoIfppir,
                             listaIfppirModel: listaIfppirModel
                         };
-
-                        localStorage.setItem("ifppir-" + infoIfppir.idFuanAfiliado, JSON.stringify(ifppir));
+                        var xId = Math.floor((Math.random() * 10000000) + 1);
+                        localStorage.setItem("ifppir-" + xId, JSON.stringify(ifppir));
                         Ext.Msg.alert('Señor Usuario', "La información ha sido guardada exitosamente", Ext.emptyFn);
                         Ext.getCmp("Form-Ifppir-Principal").destroy();
                     }

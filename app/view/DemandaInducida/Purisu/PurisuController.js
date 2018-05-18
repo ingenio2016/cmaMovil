@@ -159,6 +159,7 @@
             var myStore = Ext.getStore('getCiudadStore');
             myStore.removeAll();
             myStore.add(data);
+            console.log(myStore);
         },
 
         onSelectCombo: function (combo, record, eOpts) {
@@ -375,68 +376,68 @@
                         console.log(conf);
                         Coomuce.Util.EnviarPost(conf);
                     }, function(err) {
-                            if(err){
-                                if(err == "Limite Superado"){
-                                    $('body').loading('stop');
-                                    Ext.Msg.show({
-                                        title: "ATENCION",
-                                        message: "Se han sincronizado correctamente " + cont + " elementos",
-                                        width: 300,
-                                        buttons: [
-                                        {text: 'Aceptar', itemId: 'yes', ui: 'action'}
-                                        ],
-                                        fn: function (buttonId) {
-                                            console.log(buttonId);
-                                            if (buttonId === "yes") {
-                                                if(errorData != ""){
-                                                    Ext.Msg.alert('ATENCION', "Se encontraron inconsistencias en las fichas de los afiliados con documento de idendificación " + errorData + " estas fichas se han tenido que descartar", Ext.emptyFn);
-                                                }
+                        if(err){
+                            if(err == "Limite Superado"){
+                                $('body').loading('stop');
+                                Ext.Msg.show({
+                                    title: "ATENCION",
+                                    message: "Se han sincronizado correctamente " + cont + " elementos",
+                                    width: 300,
+                                    buttons: [
+                                    {text: 'Aceptar', itemId: 'yes', ui: 'action'}
+                                    ],
+                                    fn: function (buttonId) {
+                                        console.log(buttonId);
+                                        if (buttonId === "yes") {
+                                            if(errorData != ""){
+                                                Ext.Msg.alert('ATENCION', "Se encontraron inconsistencias en las fichas de los afiliados con documento de idendificación " + errorData + " estas fichas se han tenido que descartar", Ext.emptyFn);
                                             }
                                         }
-                                    });
-                                }else{
-                                    $('body').loading('stop');
-                                    Ext.Msg.alert('ATENCION', "Ocurrió un error al sincronizar los Datos. Por favor verifique e intente nuevamente", Ext.emptyFn);
-                                }
+                                    }
+                                });
                             }else{
-                                if(cont == 0) {
-                                    $('body').loading('stop');
-                                    Ext.Msg.show({
-                                        title: "ATENCION",
-                                        message: "No se logró sincronizar ningún dato. Por favor verifique e intente nuevamente",
-                                        width: 300,
-                                        buttons: [
-                                        {text: 'Aceptar', itemId: 'yes', ui: 'action'}
-                                        ],
-                                        fn: function (buttonId) {
-                                            if (buttonId === "yes") {
-                                                console.log(errorData);
-                                                if(errorData != ""){
-                                                    Ext.Msg.alert('ATENCION', "Se encontraron inconsistencias en la Planilla Unica. Se ha tenido que descartar", Ext.emptyFn);
-                                                }
-                                            }
-                                        }
-                                    });
-                                }else{
-                                    $('body').loading('stop');
-                                    Ext.Msg.show({
-                                        title: "ATENCION",
-                                        message: "Se han sincronizado correctamente " + cont + " elementos",
-                                        width: 300,
-                                        buttons: [
-                                        {text: 'Aceptar', itemId: 'yes', ui: 'action'}
-                                        ],
-                                        fn: function (buttonId) {
-                                            if (buttonId === "yes") {
-                                                if(errorData != ""){
-                                                    Ext.Msg.alert('ATENCION', "Se encontraron inconsistencias en la Planilla Unica. Se ha tenido que descartar", Ext.emptyFn);
-                                                }
-                                            }
-                                        }
-                                    });
-                                }
+                                $('body').loading('stop');
+                                Ext.Msg.alert('ATENCION', "Ocurrió un error al sincronizar los Datos. Por favor verifique e intente nuevamente", Ext.emptyFn);
                             }
-                        });
+                        }else{
+                            if(cont == 0) {
+                                $('body').loading('stop');
+                                Ext.Msg.show({
+                                    title: "ATENCION",
+                                    message: "No se logró sincronizar ningún dato. Por favor verifique e intente nuevamente",
+                                    width: 300,
+                                    buttons: [
+                                    {text: 'Aceptar', itemId: 'yes', ui: 'action'}
+                                    ],
+                                    fn: function (buttonId) {
+                                        if (buttonId === "yes") {
+                                            console.log(errorData);
+                                            if(errorData != ""){
+                                                Ext.Msg.alert('ATENCION', "Se encontraron inconsistencias en la Planilla Unica. Se ha tenido que descartar", Ext.emptyFn);
+                                            }
+                                        }
+                                    }
+                                });
+                            }else{
+                                $('body').loading('stop');
+                                Ext.Msg.show({
+                                    title: "ATENCION",
+                                    message: "Se han sincronizado correctamente " + cont + " elementos",
+                                    width: 300,
+                                    buttons: [
+                                    {text: 'Aceptar', itemId: 'yes', ui: 'action'}
+                                    ],
+                                    fn: function (buttonId) {
+                                        if (buttonId === "yes") {
+                                            if(errorData != ""){
+                                                Ext.Msg.alert('ATENCION', "Se encontraron inconsistencias en la Planilla Unica. Se ha tenido que descartar", Ext.emptyFn);
+                                            }
+                                        }
+                                    }
+                                });
+                            }
+                        }
+                    });
 }
 }
 });

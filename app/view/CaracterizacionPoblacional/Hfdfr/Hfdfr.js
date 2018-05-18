@@ -2,6 +2,7 @@
     extend: "Ext.form.Panel",
     id: "Form-Hfdfr-Principal",
     xtype: "hfdfr",
+
     requires: [
     "Ext.grid.Grid",
     'Ext.grid.plugin.Editable',
@@ -12,6 +13,7 @@
     "CoomuceMovil.view.CaracterizacionPoblacional.HfdfrController",
     "CoomuceMovil.view.CaracterizacionPoblacional.HfdfrModel"
     ],
+    
     controller: "caracterizacionpoblacional-hfdfr",
     viewModel: { type: "caracterizacionpoblacional-hfdfr" },
     items: [
@@ -814,7 +816,8 @@
                 }
             },
             ui: "action", 
-            reference: "botonNuevaFicha" },
+            reference: "botonNuevaFicha" 
+        },
             {
                 xtype: "grid",
                 bind: { store: "{setPregunta31}" },
@@ -1518,8 +1521,8 @@
                                     info: info,
                                     historia: historia
                                 };
-                                console.log(hfdfr);
-                                localStorage.setItem("hfdfr-" + infoHfdfr.idFuanAfiliado, JSON.stringify(hfdfr));
+                                var xId = Math.floor((Math.random() * 10000000) + 1);
+                                localStorage.setItem("hfdfr-" + xId, JSON.stringify(hfdfr));
                                 Ext.Msg.alert('Señor Usuario', "La información ha sido guardada exitosamente", Ext.emptyFn);
                                 Ext.getCmp("Form-Hfdfr-Principal").destroy();
                             }

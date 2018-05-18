@@ -73,7 +73,7 @@
         //var nextId = storeGrid.max("idFuanBeneficiariosAfiliado");
 
         var row = [
-            {
+        {
                 //idFuanBeneficiariosAfiliado: (nextId == undefined ? 1 : nextId + 1),
                 idFuanAfiliado: 0,
                 idFuan: 0,
@@ -120,29 +120,29 @@
                 fechaNacimientoConyugueFuanAfiliado: null,
                 upcFuanAfiliado: 0
             }
-        ];
+            ];
 
-        storeGrid.insert(0, row);
-    },
+            storeGrid.insert(0, row);
+        },
 
-    onToolBeneficiarioRemoverClick: function () {
-        var storeGrid = Ext.getCmp('Grid-Beneficiarios');
-        storeGrid.getStore().remove(storeGrid.selModel.getSelection());
-    },
+        onToolBeneficiarioRemoverClick: function () {
+            var storeGrid = Ext.getCmp('Grid-Beneficiarios');
+            storeGrid.getStore().remove(storeGrid.selModel.getSelection());
+        },
 
-    onToolIpsPrimariaAdicionarClick: function () {
+        onToolIpsPrimariaAdicionarClick: function () {
         // Create a record instance
         var storeGrid = Ext.getCmp('Grid-IpsPrimaria').getStore();
         var nextId = storeGrid.max("idFuanIpsPrimariaAfiliado");
 
         var row = [
-            {
-                idFuanIpsPrimariaAfiliado: (nextId == undefined ? 1 : nextId + 1),
-                idFuanAfiliado: 0,
-                tipoFuanIpsPrimariaAfiliado: "",
-                nombreFuanIpsPrimariaAfiliado: "",
-                codigoFuanIpsPrimariaAfiliado: ""
-            }
+        {
+            idFuanIpsPrimariaAfiliado: (nextId == undefined ? 1 : nextId + 1),
+            idFuanAfiliado: 0,
+            tipoFuanIpsPrimariaAfiliado: "",
+            nombreFuanIpsPrimariaAfiliado: "",
+            codigoFuanIpsPrimariaAfiliado: ""
+        }
         ];
 
         storeGrid.insert(0, row);
@@ -153,6 +153,104 @@
         storeGrid.getStore().remove(storeGrid.selModel.getSelection());
     },
 
+    onDecimalNumber: function(number, event, eOpts) {
+        var numberFormat = Ext.util.Format.number(number.getValue(), '0,000.00');
+        var controlSisben = Ext.getCmp("puntajeSisbenFuanAfiliado");
+        controlSisben.setValue(numberFormat);        
+    },
+
+    onFormatNumber: function(number, event, eOpts) {
+        var numberFormat = Ext.util.Format.usMoney(number.getValue());
+        var controlIbc = Ext.getCmp("ibcFuanAfiliado");
+        controlIbc.setValue(numberFormat);        
+    },
+
+    onSelectDepartment: function (combo, record, eOpts) {
+        var departmentId = combo._value.data.idDepartamento;
+        var store = Ext.getStore("getCityStore");
+        var data = [];
+        store.data.items.forEach(function(item, index) {
+            if(item.data.idDepartamento == departmentId) {
+                data.push(item.data);
+            }
+        });
+        var myStore = Ext.getStore('getCiudadStore');
+        myStore.removeAll();
+        myStore.add(data);
+    },
+
+    onSelectDepartmentBeneficiario: function (combo, record, eOpts) {
+        var departmentId = combo._value.data.idDepartamento;
+        var departmentName = combo._value.data.compDepartamento;
+        Ext.getCmp("compDepartamentoBeneficiario").setValue(departmentName);
+        var store = Ext.getStore("getCityStore");
+        var data = [];
+        store.data.items.forEach(function(item, index) {
+            if(item.data.idDepartamento == departmentId) {
+                data.push(item.data);
+            }
+        });
+        var myStore = Ext.getStore('getCiudadStoreBeneficiarioStore');
+        myStore.removeAll();
+        myStore.add(data);
+    },
+
+    onSelectCiudadBeneficiario: function (combo, record, eOpts) {
+        if(combo._value != null){
+            var ciudadName = combo._value.data.compCiudad;
+            Ext.getCmp("compCiudadBeneficiario").setValue(ciudadName);
+        }        
+    },
+
+    onSelectTipoIdentificacionBeneficiario: function (combo, record, eOpts) {
+        if(combo._value != null){
+            var ciudadName = combo._value.data.compTipoIdentificacion;
+            Ext.getCmp("compTipoIdentificacionBeneficiario").setValue(ciudadName);
+        }        
+    },
+
+    onSelectTipoSexoBeneficiario: function (combo, record, eOpts) {
+        if(combo._value != null){
+            var ciudadName = combo._value.data.compTipoSexo;
+            Ext.getCmp("compTipoSexoBeneficiario").setValue(ciudadName);
+        }        
+    },
+
+    onSelectTipoParentescoBeneficiario: function (combo, record, eOpts) {
+        if(combo._value != null){
+            var ciudadName = combo._value.data.compTipoParentesco;
+            Ext.getCmp("compTipoParentescoBeneficiario").setValue(ciudadName);
+        }        
+    },
+
+    onSelectTipoEtniaBeneficiario: function (combo, record, eOpts) {
+        if(combo._value != null){
+            var ciudadName = combo._value.data.compTipoEtnia;
+            Ext.getCmp("compTipoEtniaBeneficiario").setValue(ciudadName);
+        }        
+    },
+
+    onSelectTipoDiscapacidadBeneficiario: function (combo, record, eOpts) {
+        if(combo._value != null){
+            var ciudadName = combo._value.data.compTipoDiscapacidad;
+            Ext.getCmp("compTipoDiscapacidadBeneficiario").setValue(ciudadName);
+        }        
+    },
+
+    onSelectCondDiscapacidadBeneficiario: function (combo, record, eOpts) {
+        if(combo._value != null){
+            var ciudadName = combo._value.data.compCondicionDiscapacidad;
+            Ext.getCmp("compCondicionDiscapacidadBeneficiario").setValue(ciudadName);
+        }        
+    },
+
+    onSelectZonaBeneficiario: function (combo, record, eOpts) {
+        if(combo._value != null){
+            var ciudadName = combo._value.data.compTipoZona;
+            Ext.getCmp("compTipoZonaBeneficiario").setValue(ciudadName);
+        }        
+    },
+
     onBotonGuardarClick: function () {
         var me = this;
         var titleView = me.getTitleView();
@@ -161,6 +259,13 @@
             if (btn === "yes") {
                 var form = Ext.getCmp("Form-Afiliacion");
                 var infoForm = form.getForm().getValues();
+
+                console.log(infoForm);
+
+                if(infoForm.IdentificacionBeneficiario != "0"){
+                    //Resuelvo los Id de los Combos
+
+                }
                 var infoFuan = {
                     idFuan: 0, // inicializo este campo que no se captura en pantalla
                     idTipoTramite: parseInt(infoForm.idTipoTramite),
@@ -209,7 +314,7 @@
                     idTipoIdentificacionConyugue: (Ext.isEmpty(infoForm.idTipoIdentificacionConyugue) ? null : infoForm.idTipoIdentificacionConyugue),
                     identificacionConyugueFuanAfiliado: (Ext.isEmpty(infoForm.identificacionConyugueFuanAfiliado) ? null : infoForm.identificacionConyugueFuanAfiliado),
                     idTipoSexoConyugue: (Ext.isEmpty(infoForm.idTipoSexoConyugue) ? null : infoForm.idTipoSexoConyugue),
-                    fechaNacimientoConyugueFuanAfiliado: (Ext.isEmpty(infoForm.fechaNacimientoConyugueFuanAfiliado) ? null : infoForm.fechaNacimientoConyugueFuanAfiliado),
+                    fechaNacimientoConyugueFuanAfiliado: (infoForm.fechaNacimientoConyugueFuanAfiliado != "") ? infoForm.fechaNacimientoConyugueFuanAfiliado : new Date(),
                     upcFuanAfiliado: 0
                 });
 
@@ -290,10 +395,169 @@
                 //Coomuce.Util.EnviarPost(conf);
             }
         });
+},
+
+onBotonCancelarClick: function () {
+    Ext.getCmp("Form-Afiliacion").getForm().reset();
+},
+
+onBotonDeleteLCClick: function (btn) {
+        Ext.Msg.show({
+            title: "Eliminar Datos",
+            message: 'Desea eliminar los Datos?',
+            width: 300,
+            buttons: [
+            {text: 'Si', itemId: 'yes', ui: 'action'},
+            {text: 'No', itemId: 'no'}
+            ],
+            fn: function (buttonId) {
+                if (buttonId === "yes") {
+                    var i = 0;
+                    var sKey;
+                    for (; sKey = window.localStorage.key(i); i++) {
+                        if(_.includes(sKey, "hfdfr")) {
+                            window.localStorage.removeItem(sKey);
+                        }            
+                    }
+                    Ext.Msg.alert('Información', "Los Datos se han eliminado", Ext.emptyFn);
+                }
+            }
+        });
     },
 
-    onBotonCancelarClick: function () {
-        Ext.getCmp("Form-Afiliacion").getForm().reset();
-    }
-
+    onBotonSincronizarClick: function (btn) {
+        Ext.Msg.show({
+            title: "Sincronizar Datos",
+            message: 'Desea sincronizar los Datos?',
+            width: 300,
+            buttons: [
+            {text: 'Si', itemId: 'yes', ui: 'action'},
+            {text: 'No', itemId: 'no'}
+            ],
+            fn: function (buttonId) {
+                if (buttonId === "yes") {
+                    $('body').loading({
+                        theme: 'dark',
+                        message: 'Sincronizando Datos...'
+                    });
+                    me = this;
+                    var form = Ext.getCmp("Form-Afiliacion");
+                    var i = 0,
+                    dataKeys = [],
+                    sKey;
+                    for (; sKey = window.localStorage.key(i); i++) {
+                        if(_.includes(sKey, "afiliacion")) {
+                            dataKeys.push(sKey);
+                        }
+                    }        
+                    if(dataKeys.length == 0){
+                        Ext.Msg.alert('Información', "Los Datos están sincronizados", Ext.emptyFn);
+                        $('body').loading('stop');
+                        return false;
+                    }else{
+                        var cont = 0;
+                        var errorData = "";
+                        async.eachSeries(dataKeys, function(item, callback) {
+                            var data = JSON.parse(window.localStorage.getItem(item));
+                            var conf = {
+                                url: Coomuce.Url.Funciones + "AfiliacionGuardar",
+                                data: {
+                                    infoFuan: data.infoFuan,
+                                    afiliado: data.afiliado,
+                                    ips: data.ips,
+                                    declaracion: data.declaracion,
+                                    empleador: data.empleador
+                                },
+                                targetMask: form,
+                                msgMask: "Guardando datos...",
+                                fnSuccess: function (response) {
+                                    cont ++;
+                                    window.localStorage.removeItem(item);
+                                    if(cont == 20){
+                                        callback("Limite Superado");
+                                    }
+                                    callback();
+                                },
+                                fnFailure: function (resp) {
+                                    console.log(resp);
+                                    if(resp == "Bad Request"){
+                                        errorData += data.afiliado.identificacionFuanAfiliado + " ";
+                                        //window.localStorage.removeItem(item);
+                                        callback();
+                                    }else{
+                                        //window.localStorage.removeItem(item);
+                                        callback();
+                                    }
+                                }
+                            };
+                            console.log(conf);
+                            Coomuce.Util.EnviarPost(conf);                            
+                        }, function(err) {
+                            if(err){
+                                if(err == "Limite Superado"){
+                                    $('body').loading('stop');
+                                    Ext.Msg.show({
+                                        title: "ATENCION",
+                                        message: "Se han sincronizado correctamente " + cont + " elementos",
+                                        width: 300,
+                                        buttons: [
+                                        {text: 'Aceptar', itemId: 'yes', ui: 'action'}
+                                        ],
+                                        fn: function (buttonId) {
+                                            console.log(buttonId);
+                                            if (buttonId === "yes") {
+                                                if(errorData != ""){
+                                                    Ext.Msg.alert('ATENCION', "Se encontraron inconsistencias en la afiliación de los afiliados con documento de idendificación " + errorData + " estas historias se han tenido que descartar", Ext.emptyFn);
+                                                }
+                                            }
+                                        }
+                                    });
+                                }else{
+                                    $('body').loading('stop');
+                                    Ext.Msg.alert('ATENCION', "Ocurrió un error al sincronizar los Datos. Por favor verifique e intente nuevamente", Ext.emptyFn);
+                                }
+                            }else{
+                                if(cont == 0) {
+                                    $('body').loading('stop');
+                                    Ext.Msg.show({
+                                        title: "ATENCION",
+                                        message: "No se logró sincronizar ningún dato. Por favor verifique e intente nuevamente",
+                                        width: 300,
+                                        buttons: [
+                                        {text: 'Aceptar', itemId: 'yes', ui: 'action'}
+                                        ],
+                                        fn: function (buttonId) {
+                                            if (buttonId === "yes") {
+                                                console.log(errorData);
+                                                if(errorData != ""){
+                                                    Ext.Msg.alert('ATENCION', "Se encontraron inconsistencias en la afiliación de los afiliados con documento de idendificación " + errorData + " Estas historias se han tenido que descartar", Ext.emptyFn);
+                                                }
+                                            }
+                                        }
+                                    });
+                                }else{
+                                    $('body').loading('stop');
+                                    Ext.Msg.show({
+                                        title: "ATENCION",
+                                        message: "Se han sincronizado correctamente " + cont + " elementos",
+                                        width: 300,
+                                        buttons: [
+                                        {text: 'Aceptar', itemId: 'yes', ui: 'action'}
+                                        ],
+                                        fn: function (buttonId) {
+                                            if (buttonId === "yes") {
+                                                if(errorData != ""){
+                                                    Ext.Msg.alert('ATENCION', "Se encontraron inconsistencias en la afiliación de los afiliados " + errorData + " Estas fichas se han tenido que descartar", Ext.emptyFn);
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+                            }
+                        });
+                    }
+                }
+            }
+        });       
+    },
 });
