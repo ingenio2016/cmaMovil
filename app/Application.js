@@ -1574,16 +1574,16 @@ Ext.define("Coomuce.Url", {
     //Parametros: "http://181.50.98.80:82/" + "CoomuceParametros.svc/",
     //Funciones: "http://181.50.98.80:82/" + "CoomuceFunciones.svc/"
 
-    //Seguridad: "http://192.168.1.113:82/" + "CoomuceSeguridad.svc/",
-    //Administracion: "http://192.168.1.113:82/" + "CoomuceAdministracion.svc/",
-    //Parametros: "http://192.168.1.113:82/" + "CoomuceParametros.svc/",
-    //Funciones: "http://192.168.1.113:82/" + "CoomuceFunciones.svc/"
+    Seguridad: "http://181.50.98.80:8081/" + "CoomuceSeguridad.svc/",
+    Administracion: "http://181.50.98.80:8081/" + "CoomuceAdministracion.svc/",
+    Parametros: "http://181.50.98.80:8081/" + "CoomuceParametros.svc/",
+    Funciones: "http://181.50.98.80:8081/" + "CoomuceFunciones.svc/"
 
     //DEVELOP
-    Seguridad: "http://localhost:60871/" + "CoomuceSeguridad.svc/",
-    Administracion: "http://localhost:60871/" + "CoomuceAdministracion.svc/",
-    Parametros: "http://localhost:60871/" + "CoomuceParametros.svc/",
-    Funciones: "http://localhost:60871/" + "CoomuceFunciones.svc/"
+    //Seguridad: "http://localhost:60871/" + "CoomuceSeguridad.svc/",
+    //Administracion: "http://localhost:60871/" + "CoomuceAdministracion.svc/",
+    //Parametros: "http://localhost:60871/" + "CoomuceParametros.svc/",
+    //Funciones: "http://localhost:60871/" + "CoomuceFunciones.svc/"
 });
 
 /**

@@ -415,7 +415,7 @@ onBotonDeleteLCClick: function (btn) {
                     var i = 0;
                     var sKey;
                     for (; sKey = window.localStorage.key(i); i++) {
-                        if(_.includes(sKey, "hfdfr")) {
+                        if(_.includes(sKey, "afiliacion")) {
                             window.localStorage.removeItem(sKey);
                         }            
                     }
@@ -482,10 +482,10 @@ onBotonDeleteLCClick: function (btn) {
                                     console.log(resp);
                                     if(resp == "Bad Request"){
                                         errorData += data.afiliado.identificacionFuanAfiliado + " ";
-                                        //window.localStorage.removeItem(item);
+                                        window.localStorage.removeItem(item);
                                         callback();
                                     }else{
-                                        //window.localStorage.removeItem(item);
+                                        window.localStorage.removeItem(item);
                                         callback();
                                     }
                                 }

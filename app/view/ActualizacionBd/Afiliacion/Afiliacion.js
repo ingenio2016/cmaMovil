@@ -715,14 +715,14 @@
                             compTipoDiscapacidad: infoFormBeneficiario.compTipoDiscapacidadBeneficiario,
                             idCondicionDiscapacidad: infoFormBeneficiario.idCondicionDiscapacidadBeneficiario, 
                             compCondicionDiscapacidad: infoFormBeneficiario.compCondicionDiscapacidadBeneficiario,
-                            puntajeSisbenFuanAfiliado: 0,
+                            puntajeSisbenFuanAfiliado: "0",
                             numCarnetFuanAfiliado: infoFormBeneficiario.numCarnetBeneficiario,
-                            idTipoParentesco: (infoFormBeneficiario.idTipoParentescoBeneficiario)?infoFormBeneficiario.idTipoParentescoBeneficiario:0,
+                            idTipoParentesco: (infoFormBeneficiario.idTipoParentescoBeneficiario)?infoFormBeneficiario.idTipoParentescoBeneficiario:null,
                             compTipoParentesco: infoFormBeneficiario.compTipoParentescoBeneficiario, 
-                            idGrupoPoblacional: 1, 
+                            idGrupoPoblacional: null, 
                             arlFuanAfiliado: "", 
                             pensionFuanAfiliado: "", 
-                            ibcFuanAfiliado: 0, 
+                            ibcFuanAfiliado: "", 
                             direccionFuanAfiliado: "", 
                             telefonoFuanAfiliado: infoFormBeneficiario.telefonoFuanBeneficiariosAfiliado, 
                             celularFuanAfiliado: "", 
@@ -740,45 +740,45 @@
                             segundoNombreConyugueFuanAfiliado: "", 
                             idTipoIdentificacionConyugue: 4, 
                             identificacionConyugueFuanAfiliado: "", 
-                            idTipoSexoConyugue: 1, 
-                            fechaNacimientoConyugueFuanAfiliado: "",
-                            upcFuanAfiliado: (infoFormBeneficiario.upcFuanBeneficiariosAfiliado)?parseFloat(infoFormBeneficiario.upcFuanBeneficiariosAfiliado):0,
-                            firmaFuanAfiliado: infoFormBeneficiario.firmaBeneficiario,
+                            idTipoSexoConyugue: null, 
+                            fechaNacimientoConyugueFuanAfiliado: newD,
+                            upcFuanAfiliado: (infoFormBeneficiario.upcFuanBeneficiariosAfiliado != "")?parseFloat(infoFormBeneficiario.upcFuanBeneficiariosAfiliado):0,
+                            firmaFuanAfiliado: "",
                             cabezafamilia: 0,
                             grupofamiliar: infoFormBeneficiario.identificacionFuanAfiliado,
                             identificacionAnexo: ""
                         });
                         console.log(storeBeneficiarios.data.items);
-                    //BORRO LOS CONTROLES
-                    Ext.getCmp("primerApellidoFuanBeneficiariosAfiliado").setValue("");
-                    Ext.getCmp("segundoApellidoFuanBeneficiariosAfiliado").setValue("");
-                    Ext.getCmp("primerNombreFuanBeneficiariosAfiliado").setValue("");
-                    Ext.getCmp("segundoNombreFuanBeneficiariosAfiliado").setValue("");
-                    Ext.getCmp("compTipoIdentificacionBeneficiario").setValue("");
-                    Ext.getCmp("IdentificacionBeneficiario").setValue("");
-                    Ext.getCmp("compTipoSexoBeneficiario").setValue("");
-                    Ext.getCmp("numCarnetBeneficiario").setValue("");
-                    Ext.getCmp("compTipoParentescoBeneficiario").setValue("");
-                    Ext.getCmp("compTipoEtniaBeneficiario").setValue("");
-                    Ext.getCmp("compTipoDiscapacidadBeneficiario").setValue("");
-                    Ext.getCmp("compCondicionDiscapacidadBeneficiario").setValue("");
-                    Ext.getCmp("compDepartamentoBeneficiario").setValue("");
-                    Ext.getCmp("compCiudadBeneficiario").setValue("");
-                    Ext.getCmp("telefonoFuanBeneficiariosAfiliado").setValue("");
-                    Ext.getCmp("compTipoZonaBeneficiario").setValue("");
-                    Ext.getCmp("upcFuanBeneficiariosAfiliado").setValue("");
-                    Ext.getCmp("firmaBeneficiario").setValue("");
+                        //BORRO LOS CONTROLES
+                        Ext.getCmp("primerApellidoFuanBeneficiariosAfiliado").setValue("");
+                        Ext.getCmp("segundoApellidoFuanBeneficiariosAfiliado").setValue("");
+                        Ext.getCmp("primerNombreFuanBeneficiariosAfiliado").setValue("");
+                        Ext.getCmp("segundoNombreFuanBeneficiariosAfiliado").setValue("");
+                        Ext.getCmp("compTipoIdentificacionBeneficiario").setValue("");
+                        Ext.getCmp("IdentificacionBeneficiario").setValue("");
+                        Ext.getCmp("compTipoSexoBeneficiario").setValue("");
+                        Ext.getCmp("numCarnetBeneficiario").setValue("");
+                        Ext.getCmp("compTipoParentescoBeneficiario").setValue("");
+                        Ext.getCmp("compTipoEtniaBeneficiario").setValue("");
+                        Ext.getCmp("compTipoDiscapacidadBeneficiario").setValue("");
+                        Ext.getCmp("compCondicionDiscapacidadBeneficiario").setValue("");
+                        Ext.getCmp("compDepartamentoBeneficiario").setValue("");
+                        Ext.getCmp("compCiudadBeneficiario").setValue("");
+                        Ext.getCmp("telefonoFuanBeneficiariosAfiliado").setValue("");
+                        Ext.getCmp("compTipoZonaBeneficiario").setValue("");
+                        Ext.getCmp("upcFuanBeneficiariosAfiliado").setValue("");
+                        Ext.getCmp("firmaBeneficiario").setValue("");
 
-                    Ext.getCmp("idTipoIdentificacionBeneficiario").setValue(0);
-                    Ext.getCmp("idTipoSexoBeneficiario").setValue(0);
-                    Ext.getCmp("idTipoParentescoBeneficiario").setValue(0);
-                    Ext.getCmp("idTipoEtniaBeneficiario").setValue(0);
-                    Ext.getCmp("idTipoDiscapacidadBeneficiario").setValue(0);
-                    Ext.getCmp("idCondicionDiscapacidadBeneficiario").setValue(0);
-                    Ext.getCmp("idDepartamentoBeneficiario").setValue(0);
-                    Ext.getCmp("idCiudadBeneficiario").setValue(0);
-                    Ext.getCmp("idTipoZonaBeneficiario").setValue(0);
-                    Ext.getCmp("fechaNacimientoFuanBeneficiariosAfiliado").setValue(null);
+                        Ext.getCmp("idTipoIdentificacionBeneficiario").setValue(0);
+                        Ext.getCmp("idTipoSexoBeneficiario").setValue(0);
+                        Ext.getCmp("idTipoParentescoBeneficiario").setValue(0);
+                        Ext.getCmp("idTipoEtniaBeneficiario").setValue(0);
+                        Ext.getCmp("idTipoDiscapacidadBeneficiario").setValue(0);
+                        Ext.getCmp("idCondicionDiscapacidadBeneficiario").setValue(0);
+                        Ext.getCmp("idDepartamentoBeneficiario").setValue(0);
+                        Ext.getCmp("idCiudadBeneficiario").setValue(0);
+                        Ext.getCmp("idTipoZonaBeneficiario").setValue(0);
+                        Ext.getCmp("fechaNacimientoFuanBeneficiariosAfiliado").setValue(null);
                 }
             }
         },
@@ -1302,6 +1302,25 @@
                                     return false;
                                 }
 
+                                //Convierto le fecha que me esta dando problemas
+                                var newD = null;
+                                var newDConyuge = null;
+                                if(infoForm.fechaNacimientoFuanAfiliado != "") {
+                                    var d = new Date(infoForm.fechaNacimientoFuanAfiliado);
+                                    newD = ((d.getDate() < 10)?("0"+d.getDate()):d.getDate())+"/"+(((d.getMonth()+1) < 10)?("0"+(d.getMonth()+1)):(d.getMonth()+1))+"/"+d.getFullYear();
+                                }else{
+                                    var d = new Date();
+                                    newD = ((d.getDate() < 10)?("0"+d.getDate()):d.getDate())+"/"+(((d.getMonth()+1) < 10)?("0"+(d.getMonth()+1)):(d.getMonth()+1))+"/"+d.getFullYear();
+                                }
+
+                                if(infoForm.fechaNacimientoConyugueFuanAfiliado != "") {
+                                    var d = new Date(infoForm.fechaNacimientoConyugueFuanAfiliado);
+                                    newD = ((d.getDate() < 10)?("0"+d.getDate()):d.getDate())+"/"+(((d.getMonth()+1) < 10)?("0"+(d.getMonth()+1)):(d.getMonth()+1))+"/"+d.getFullYear();
+                                }else{
+                                    var d = new Date();
+                                    newD = ((d.getDate() < 10)?("0"+d.getDate()):d.getDate())+"/"+(((d.getMonth()+1) < 10)?("0"+(d.getMonth()+1)):(d.getMonth()+1))+"/"+d.getFullYear();
+                                }
+
                                 var afiliados = [];
 
                                 afiliados.push({
@@ -1315,11 +1334,11 @@
                                     idTipoIdentificacion: infoForm.idTipoIdentificacionII, 
                                     identificacionFuanAfiliado: infoForm.identificacionFuanAfiliado, 
                                     idTipoSexo: infoForm.idTipoSexoII, 
-                                    fechaNacimientoFuanAfiliado: infoForm.fechaNacimientoFuanAfiliado, 
+                                    fechaNacimientoFuanAfiliado: newD, 
                                     idTipoEtnia: infoForm.idTipoEtnia, 
                                     idTipoDiscapacidad: (infoForm.idTipoDiscapacidad != null) ? infoForm.idTipoDiscapacidad : null, 
                                     idCondicionDiscapacidad: (infoForm.idCondicionDiscapacidad != null) ? infoForm.idCondicionDiscapacidad : null,
-                                    puntajeSisbenFuanAfiliado: (infoForm.puntajeSisbenFuanAfiliado)?parseFloat(infoForm.puntajeSisbenFuanAfiliado):0,
+                                    puntajeSisbenFuanAfiliado: (infoForm.puntajeSisbenFuanAfiliado)?infoForm.puntajeSisbenFuanAfiliado:"0",
                                     numCarnetFuanAfiliado: infoForm.numCarnetFuanAfiliado, 
                                     idGrupoPoblacional: (infoForm.idGrupoPoblacional != null) ? infoForm.idGrupoPoblacional : null, 
                                     arlFuanAfiliado: infoForm.arlFuanAfiliado, 
@@ -1336,15 +1355,16 @@
                                     segundoApellidoConyugueFuanAfiliado: infoForm.segundoApellidoConyugueFuanAfiliado,
                                     primerNombreConyugueFuanAfiliado: infoForm.primerNombreConyugueFuanAfiliado,
                                     segundoNombreConyugueFuanAfiliado: infoForm.segundoNombreConyugueFuanAfiliado,
-                                    idTipoIdentificacionConyugue: (infoForm.idTipoIdentificacionConyugue != "0") ? infoForm.idTipoIdentificacionConyugue : 4,
+                                    idTipoIdentificacionConyugue: (infoForm.idTipoIdentificacionConyugue != "0") ? infoForm.idTipoIdentificacionConyugue : null,
                                     identificacionConyugueFuanAfiliado: infoForm.identificacionConyugueFuanAfiliado,
-                                    idTipoSexoConyugue: (infoForm.idTipoSexoConyugueFuanAfiliado != "0") ? infoForm.idTipoSexoConyugueFuanAfiliado : 2,
-                                    fechaNacimientoConyugueFuanAfiliado: (infoForm.fechaNacimientoConyugueFuanAfiliado != null) ? infoForm.fechaNacimientoConyugueFuanAfiliado : new Date(),
+                                    idTipoSexoConyugue: (infoForm.idTipoSexoConyugueFuanAfiliado != "0") ? infoForm.idTipoSexoConyugueFuanAfiliado : null,
+                                    fechaNacimientoConyugueFuanAfiliado: newDConyuge,
                                     upcFuanAfiliado: 0,
                                     cabezafamilia: 1,
                                     grupofamiliar: infoForm.identificacionFuanAfiliado,
                                     identificacionAnexo: "",
-                                    firmaFuanAfiliado: ""
+                                    firmaFuanAfiliado: "",
+                                    idTipoParentesco: null
                                 });
 
                                 var empleador = {
